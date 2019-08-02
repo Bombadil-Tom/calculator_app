@@ -70,7 +70,7 @@ Add a token to a calculation.
 
 * Input examples: 
     * { "type": "number", "value": 5}
-    * { "type": "number", "value": "+"}
+    * { "type": "operator", "value": "+"}
 
 * Output: 
 
