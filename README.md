@@ -26,6 +26,7 @@ Creates a new calculation
     "id": "ed194837-26e1-49fd-95d5-7bb3ae79261f"
 }
 `
+
  **GET /calculations**
 
  List all calculations
