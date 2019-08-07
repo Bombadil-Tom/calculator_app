@@ -1,7 +1,12 @@
-const express = require("express");
-const app = express();
+const express = require('express');
 const port = 3000;
+const bodyParser = require('body-parser');
 
-app.get('/', (req,res)=>res.send({hi:"world"}));
+const app = express();
 
-app.listen(port,()=>console.log(`app listening to port ${port}`))
+app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.json());
+
+require('./routes/calculatorApi')(app);
+
+app.listen(port, () => console.log(`app listening to port ${port}`));
