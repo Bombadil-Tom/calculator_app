@@ -11,9 +11,11 @@ cache:
   directories:
     - server/node_modules
 install:
-  - cd server && npm install
-  - cd server && npm run build
+  - cd server
+  - npm install
+  - npm run build
 script:
+  - cd server
   - nohup npm run start &
   - sleep 3
   - npm run test
