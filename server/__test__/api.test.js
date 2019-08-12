@@ -1,5 +1,4 @@
 const axios = require('axios');
-
 const hostPath = 'http://localhost:3000';
 const calcPath = `${hostPath}/calculations`;
 
