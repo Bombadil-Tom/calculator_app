@@ -13,7 +13,6 @@ cache:
 install:
   - cd server
   - npm install
-  - npm run build
 script:
   - cd server
   - nohup npm run start &
