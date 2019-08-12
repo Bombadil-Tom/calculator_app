@@ -4,6 +4,8 @@ console.log(process.env.NODE_ENV);
 
 let keys;
 
+console.log('hi');
+
 if (process.env.NODE_ENV === 'ci') {
   keys = require('./keys');
   console.log(process.env);
