@@ -10,7 +10,6 @@ env:
 cache:
   directories:
     - server/node_modules
-    - server/client/node_modules
 install:
   - npm install
   - npm run build
