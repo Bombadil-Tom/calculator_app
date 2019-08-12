@@ -1,14 +1,9 @@
 const mongoose = require('mongoose');
 
-console.log(process.env.NODE_ENV);
-
 let keys;
 
-
 if (process.env.NODE_ENV === 'ci') {
-  console.log(process.env);
-  console.log(process.env.DB_USER);
-  keys = require('./keys');
+  keys = require('./ciKeys');
 } else{
   keys = require('./keys');
 }
