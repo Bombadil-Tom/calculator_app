@@ -1,4 +1,3 @@
-require('../dbConnect');
 const mongoose = require('mongoose');
 const { isTokenValid, isTokenTypeCorrect } = require('../utils/validateToken');
 
@@ -6,16 +5,9 @@ const Calculation = mongoose.model('calculations');
 
 module.exports = (app) => {
 
-  const calcDB = 'calculations';
-  const tokenDB = 'tokens';
-  const calcPath = '/calculations';
-  const calcIdPath = `${calcPath}/:calculationId`;
-
-
   app.get('/', (req, res) => res.send('hello World'));
 
-
-  app.post(`${calcPath}`, async(req, res) => {
+  app.post('/calculations', async(req, res) => {
     const calculation = new Calculation();
 
     try{

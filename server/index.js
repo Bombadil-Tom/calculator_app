@@ -2,6 +2,8 @@ const bodyParser = require('body-parser');
 const express = require('express');
 
 require('./models/CalculationSchema');
+require('./dbConnect');
+
 
 const port = 3000;
 const app = express();

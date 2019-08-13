@@ -1,12 +1,6 @@
 const mongoose = require('mongoose');
 
-let keys;
-
-if (process.env.NODE_ENV === 'ci') {
-  keys = require('./ciKeys');
-} else{
-  keys = require('./keys');
-}
+const keys = require('./config/keys');
 
 const url =`mongodb+srv://${keys.dbUser}:${keys.dbPassword}@cluster0-qyc2d.mongodb.net/test?retryWrites=true&w=majority`;
 
