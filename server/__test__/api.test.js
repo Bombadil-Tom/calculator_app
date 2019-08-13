@@ -9,6 +9,10 @@ beforeAll(async () => {
     firstCalc = res.data;
 });
 
+// afterAll(async () => {
+//     const Calculation = mongoose.model('calculations');
+// });
+
 describe('status codes', () => {
     test('get homepage', async () => {
         const res = await axios.get(hostPath)
