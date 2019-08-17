@@ -59,6 +59,8 @@ module.exports = (app) => {
   });
 
   app.get('/calculations/:calculationId/result', (req, res) => {
+    const { calculationId } = req.params;
+
     res.send({result: 10});
   });
 };
