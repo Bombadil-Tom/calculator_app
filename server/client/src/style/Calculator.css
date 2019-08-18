@@ -1,0 +1,29 @@
+.calculator{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width:300px;
+    background-color: black;
+    margin:auto;
+    height: 400px;
+}
+
+.btn-row:nth-child(5) >:nth-child(2){
+    width:100px;
+    background-color: orange;
+    border-color:orange;
+}
+
+.btn-row > button:last-child{
+    background-color: orange;
+    border-color:orange;
+}
+
+.btn-row > button{
+    margin:5px;
+}
+
+.selection{
+    color:white;
+    font-weight: bold;
+}

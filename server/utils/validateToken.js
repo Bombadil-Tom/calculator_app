@@ -3,7 +3,7 @@ const isNumber = ({type}) => type === 'number';
 
 const isValidNumber = (num) => typeof (num) === 'number';
 const isValidOperator = (value) => {
-  return value === '+' || value === '-' || value === '/' || value === '*';
+  return value === '+' || value === '-' || value === '/' || value === 'x';
 };
 
 const isTokenValid = (token) => {
