@@ -1,0 +1,9 @@
+{
+    "eslint.autoFixOnSave": true,
+    "prettier.singleQuote": true,
+    "editor.formatOnSave": true,
+    "prettier.alignObjectProperties": true,
+    "prettier.arrayExpand": true,
+    "prettier.breakBeforeElse": true,
+    "prettier.spaceBeforeFunctionParen": true
+}

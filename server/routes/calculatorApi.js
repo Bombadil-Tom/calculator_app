@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const { isTokenValid, isTokenTypeCorrect } = require('../utils/validateToken');
+const { calculateResult } = require('../utils/calculateResult');
 
 const Calculation = mongoose.model('calculations');
 
@@ -26,7 +27,7 @@ module.exports = (app) => {
 
   app.get('/calculations/:calculationId', async (req, res) => {
     const { calculationId } = req.params;
-    const calculation = await Calculation.findOne({_id:calculationId});
+    const calculation = await Calculation.findOne({ _id:calculationId });
     
     if(!calculation) return res.status(404).send("No entry wit this id");
     
@@ -58,9 +59,12 @@ module.exports = (app) => {
     }
   });
 
-  app.get('/calculations/:calculationId/result', (req, res) => {
+  app.get('/calculations/:calculationId/result', async (req, res) => {
     const { calculationId } = req.params;
+    const calculation = await Calculation.findOne({ _id:calculationId });
+    
+    const result = calculateResult(calculation.tokens);
 
-    res.send({result: 10});
+    res.send({ result });
   });
 };

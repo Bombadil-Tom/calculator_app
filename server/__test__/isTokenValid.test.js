@@ -2,7 +2,7 @@ const { isTokenValid } = require('../utils/validateToken');
 
 describe('is operator type valid', () => {
   it('returns false if operator is not + - / or x', () => {
-    const token = { type: 'operator', value: 'a'};
+    const token = { type: 'operator', value: 'a' };
     expect(isTokenValid(token)).toBeFalsy();
 
     token.value = '$';
@@ -16,22 +16,22 @@ describe('is operator type valid', () => {
   });
 
   it('returns true if operator is +', () => {
-    const token = { type: 'operator', value: '+'};
+    const token = { type: 'operator', value: '+' };
     expect(isTokenValid(token)).toBeTruthy();
   });
 
   it('returns true if operator is -', () => {
-    const token = { type: 'operator', value: '-'};
+    const token = { type: 'operator', value: '-' };
     expect(isTokenValid(token)).toBeTruthy();
   });
 
   it('returns true if operator is /', () => {
-    const token = { type: 'operator', value: '/'};
+    const token = { type: 'operator', value: '/' };
     expect(isTokenValid(token)).toBeTruthy();
   });
 
   it('returns true if operator is x', () => {
-    const token = { type: 'operator', value: 'x'};
+    const token = { type: 'operator', value: 'x' };
     expect(isTokenValid(token)).toBeTruthy();
   });
 });
@@ -56,4 +56,3 @@ describe('is number type valid', () => {
     expect(isTokenValid(token)).toBeFalsy();
   });
 });
-

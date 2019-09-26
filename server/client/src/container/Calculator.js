@@ -5,7 +5,7 @@ import 'style/Calculator.css';
 
 const Calculator = () => {
     const [calculationId, setCalculationId] = useState(null);
-    const [result, setResult] = useState(null);
+    const [result, setResult] = useState(0);
     const [selection, setSelection] = useState(0)
     
     const postNum = async (e) => {
@@ -24,7 +24,6 @@ const Calculator = () => {
         
         const { result } = res.data;
         setResult(result);
-        console.log(result);
     };
 
     const postOperator = async (e) => {
@@ -74,7 +73,7 @@ const Calculator = () => {
                 <Button title={"+"} onClick={postOperator}/>
             </div>
             <div><Button title={"AC"} onClick={reset}/></div>
-            {result && <div>Result:{result}</div>}
+            {result && <div className="result">Result: {result}</div>}
         </div>
     );
 }
