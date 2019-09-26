@@ -1,17 +1,15 @@
-const isOperator = ({type}) => type === 'operator';
-const isNumber = ({type}) => type === 'number';
+const isOperator = ({ type }) => type === 'operator';
+const isNumber = ({ type }) => type === 'number';
 
 const isValidNumber = (num) => typeof (num) === 'number';
-const isValidOperator = (value) => {
-  return value === '+' || value === '-' || value === '/' || value === 'x';
-};
+const isValidOperator = (value) => value === '+' || value === '-' || value === '/' || value === 'x';
 
 const isTokenValid = (token) => {
-  if(isNumber(token)) {
+  if (isNumber(token)) {
     return isValidNumber(token.value);
   }
 
-  if(isOperator(token)) {
+  if (isOperator(token)) {
     return isValidOperator(token.value);
   }
 
@@ -21,12 +19,15 @@ const isTokenValid = (token) => {
 
 const isTokenTypeCorrect = (tokens, newToken) => {
   if (tokens.length === 0) {
+    if (isOperator(newToken)) {
+      if (newToken.value === '*' || newToken.value === '/') { return false; }
+    }
     return true;
   }
 
-  const lastToken = tokens[tokens.length-1];
+  const lastToken = tokens[tokens.length - 1];
 
-  if(isOperator(lastToken) && isOperator(newToken)) {
+  if (isOperator(lastToken) && isOperator(newToken)) {
     return false;
   }
 

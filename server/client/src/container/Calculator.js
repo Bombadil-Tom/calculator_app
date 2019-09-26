@@ -6,9 +6,12 @@ import 'style/Calculator.css';
 const Calculator = () => {
     const [calculationId, setCalculationId] = useState(null);
     const [result, setResult] = useState(0);
-    const [selection, setSelection] = useState(0)
+    const [selection, setSelection] = useState(0);
+    const [error, setError] = useState(false);
     
     const postNum = async (e) => {
+        if(error) setError(false);
+
         const { value } = e.target;
         const token = { type:'number', value: parseInt(value,10) };
         
@@ -31,50 +34,61 @@ const Calculator = () => {
         const token = { type: 'operator', value};
         
         const url = `/calculations/${calculationId}/tokens`;
-        await axios.post(url, token).catch(e=>console.log(e.response));
+        await axios.post(url, token).catch(e => {
+            setError(true);
+        });
     };
 
     const reset = () => {
-        setCalculationId(null);
+        setError(null);
+        getCalculationId();
+        setResult(0);
+        setSelection(0);
     };
 
+    const getCalculationId = async () => {
+        const res = await axios.post('/calculations/');
+        setCalculationId(res.data.id);
+    }
+
     useEffect( () => {
-        const getCalculationId = async () => {
-            const res = await axios.post('/calculations/');
-            setCalculationId(res.data.id);
-        }
         getCalculationId();
     },[]);
 
+
     return (
-        <div className="calculator">
-            <div className="selection">{selection}</div>
-            <div className="btn-row">
-                <Button title={9} onClick={postNum}/>
-                <Button title={8} onClick={postNum}/>
-                <Button title={7} onClick={postNum}/>
-                <Button title={"x"} onClick={postOperator}/>
-            </div>
-            <div className="btn-row">
-                <Button title={6} onClick={postNum}/>
-                <Button title={5} onClick={postNum}/>
-                <Button title={4} onClick={postNum}/>
-                <Button title={"/"} onClick={postOperator}/>
-            </div>
-            <div className="btn-row">
-                <Button title={3} onClick={postNum}/>
-                <Button title={2} onClick={postNum}/>
-                <Button title={1} onClick={postNum}/>
-                <Button title={"-"} onClick={postOperator}/>
-            </div>
-            <div className="btn-row">
-                <Button title={0} onClick={postNum}/>
-                <Button title={"="} onClick={getResult}/>
-                <Button title={"+"} onClick={postOperator}/>
-            </div>
-            <div><Button title={"AC"} onClick={reset}/></div>
+        <div>
+            <div className="calculator">
+                <div className="selection">{selection}</div>
+                <div className="btn-row">
+                    <Button title={9} onClick={postNum}/>
+                    <Button title={8} onClick={postNum}/>
+                    <Button title={7} onClick={postNum}/>
+                    <Button title={"x"} onClick={postOperator}/>
+                </div>
+                <div className="btn-row">
+                    <Button title={6} onClick={postNum}/>
+                    <Button title={5} onClick={postNum}/>
+                    <Button title={4} onClick={postNum}/>
+                    <Button title={"/"} onClick={postOperator}/>
+                </div>
+                <div className="btn-row">
+                    <Button title={3} onClick={postNum}/>
+                    <Button title={2} onClick={postNum}/>
+                    <Button title={1} onClick={postNum}/>
+                    <Button title={"-"} onClick={postOperator}/>
+                </div>
+                <div className="btn-row">
+                    <Button title={0} onClick={postNum}/>
+                    <Button title={"="} onClick={getResult}/>
+                    <Button title={"+"} onClick={postOperator}/>
+                </div>
+                <div><Button title={"AC"} onClick={reset}/></div>
             {result && <div className="result">Result: {result}</div>}
+            </div>
+            {error && <div className="error">Only one operator (following a number) is allowed</div>}
         </div>
+        
     );
 }
 

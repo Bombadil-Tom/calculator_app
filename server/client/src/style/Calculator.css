@@ -7,7 +7,7 @@
   margin: auto;
   margin-top: 50px;
   padding-top: 10px;
-  padding-bottom: 20px;
+  height: 400px;
   border-radius: 25px;
 }
 
@@ -34,4 +34,9 @@
 .result {
   color: white;
   margin-top: 15px;
+}
+
+.error {
+  color: red;
+  text-align: center;
 }
